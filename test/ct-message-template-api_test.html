@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>ct-message-template-api test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../ct-message-template-api.html">
+  </head>
+  <body>
+    <test-fixture id="basic">
+      <template>
+        <ct-message-template-api></ct-message-template-api>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('ct-message-template-api', function() {
+        test('instantiating the element works', function() {
+          var element = fixture('basic');
+          assert.equal(element.is, 'ct-message-template-api');
+        });
+      });
+    </script>
+  </body>
+</html>

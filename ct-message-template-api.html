@@ -1,0 +1,34 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`ct-message-template-api`
+Element for consuming the template API
+
+@demo demo/index.html
+-->
+
+<dom-module id="ct-message-template-api">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'ct-message-template-api',
+
+      properties: {
+        prop1: {
+          type: String,
+          value: 'ct-message-template-api',
+        },
+      },
+
+    });
+  </script>
+</dom-module>
