@@ -14,7 +14,7 @@ Element for consuming the template API
     <iron-ajax id="getTemplates"></iron-ajax>
     <iron-ajax id="getTemplateModel"></iron-ajax>
     <iron-ajax id="getPurposeLegend"></iron-ajax>
-    <iron-ajax id="getPurposeTypes"></iron-ajax>
+    <iron-ajax id="getTempalateByPurposeAndTypes"></iron-ajax>
     <iron-ajax id="updateTemplate"></iron-ajax>
     <iron-ajax id="getTemplateByPurpose"></iron-ajax>
   </template>
@@ -58,12 +58,12 @@ Element for consuming the template API
       },
 
        getPurposeLegend: function(purposeId){
-          this.$.getPurposeLegend.url = this._url('/template/model'+purposeId);
+          this.$.getPurposeLegend.url = this._url('/template/model/'+purposeId);
           return this._generateRequest(this.$.getPurposeLegend);
       },
-        getPurposeTypes: function(type, purpose){
-          this.$.getPurposeTypes.url = this._url('/template/type'+type+'/purpose'+purpose);
-          return this._generateRequest(this.$.getPurposeTypes);
+        getTempalateByPurposeAndTypes: function(typeId, purposeId){
+          this.$.getTempalateByPurposeAndTypes.url = this._url('/template/type/'+typeId+'/purpose/'+purposeId);
+          return this._generateRequest(this.$.getTempalateByPurposeAndTypes);
       },
       getTemplateByPurpose: function() {
         var url = '/template/purposes';
