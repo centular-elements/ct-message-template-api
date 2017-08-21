@@ -1,4 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../ct-core-utils/ct-api-provider-behaviour.html">
 
 <!--
 `ct-message-template-api`
@@ -9,24 +11,75 @@ Element for consuming the template API
 
 <dom-module id="ct-message-template-api">
   <template>
+    <iron-ajax id="getTemplates"></iron-ajax>
+    <iron-ajax id="getTemplateModel"></iron-ajax>
+    <iron-ajax id="getPurposeLegend"></iron-ajax>
+    <iron-ajax id="getTempalateByPurposeAndTypes"></iron-ajax>
+    <iron-ajax id="updateTemplate"></iron-ajax>
+    <iron-ajax id="getTemplateByPurpose"></iron-ajax>
+  </template>
+  <template>
     <style>
       :host {
         display: block;
       }
     </style>
-    <h2>Hello [[prop1]]!</h2>
+
   </template>
 
   <script>
     Polymer({
 
       is: 'ct-message-template-api',
+      behaviors: [CT.Behaviours.ApiProvider],
 
-      properties: {
-        prop1: {
-          type: String,
-          value: 'ct-message-template-api',
-        },
+      /**
+       * Get all available Templates
+       *
+       *
+       * @returns {Promise}
+       */
+
+      //  getTemplateList: function(){
+      //    this.$.getTemplateList.url = this._url('/template')
+      //    return this._generateRequest(this.$.getTemplateList);
+      //  },
+
+       /**
+       * Get all templates
+       *
+       * @returns {Promise}
+       */
+      getTemplates: function() {
+          var url = '/template/types';
+          this.$.getTemplates.method = 'GET';
+          this.$.getTemplates.url = this._url(url);
+          return this._generateRequest(this.$.getTemplates);
+      },
+
+       getPurposeLegend: function(purposeId){
+          this.$.getPurposeLegend.url = this._url('/template/model/'+purposeId);
+          return this._generateRequest(this.$.getPurposeLegend);
+      },
+        getTempalateByPurposeAndTypes: function(typeId, purposeId){
+          this.$.getTempalateByPurposeAndTypes.url = this._url('/template/type/'+typeId+'/purpose/'+purposeId);
+          return this._generateRequest(this.$.getTempalateByPurposeAndTypes);
+      },
+      getTemplateByPurpose: function() {
+        var url = '/template/purposes';
+        this.$.getTemplateByPurpose.method = 'GET';
+        this.$.getTemplateByPurpose.url = this._url(url);
+        return this._generateRequest(this.$.getTemplateByPurpose);
+
+          // this.$.getTemplateByPurpose.url = this._url('/template/purposes');
+          // return this._generateRequest(this.getTemplateByPurpose);
+      },
+      updateTemplate: function() {
+          this.$.updateTemplate.url=this._url('/template');
+          this.$.updateTemplate.method = 'PUT';
+          this.$.updateTemplate.contentType = "application/json";
+          this.$.updateTemplate.body = updateTemplate;
+          return this._generateRequest(this.$.updateTemplate);
       },
 
     });
